@@ -67,6 +67,13 @@
   --full-height: 100%;
 }
 
+@media only screen and (min-width: 600px) and (max-width: 1200px) {
+  :root {
+    --window-width: 100vw;
+    --window-height: var(--full-height);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   :root {
     --window-width: 100vw;
