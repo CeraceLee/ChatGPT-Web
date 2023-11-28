@@ -22,7 +22,7 @@ import {
   Routes,
   Route,
   useLocation,
-  useHistory,
+  useNavigate,
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
@@ -81,7 +81,7 @@ function getPathType(path) {
 
 export function useSwitchTheme() {
   const config = useAppConfig();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.body.classList.remove("light");
@@ -93,16 +93,16 @@ export function useSwitchTheme() {
       document.body.classList.add("light");
     }
 
-    changeThemeColor(getPathType(history.location.pathname));
+    changeThemeColor(getPathType(navigate.location.pathname));
 
-    const unlisten = history.listen(() => {
-      changeThemeColor(getPathType(history.location.pathname));
+    const unlisten = navigate.subscribe(() => {
+      changeThemeColor(getPathType(navigate.location.pathname));
     });
 
     return () => {
       unlisten();
     };
-  }, [config.theme, history]);
+  }, [config.theme, navigate]);
 }
 
 function useHtmlLang() {
