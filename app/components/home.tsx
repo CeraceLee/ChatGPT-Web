@@ -56,7 +56,7 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
 
-function changeThemeColor(pageType) {
+function changeThemeColor(pageType: string) {
   const metaDescriptionDark = document.querySelector(
     'meta[name="theme-color"][media*="dark"]',
   );
@@ -75,7 +75,7 @@ function changeThemeColor(pageType) {
   }
 }
 
-function getPathType(path) {
+function getPathType(path: string) {
   return path === Path.Home ? 'main' : 'other';
 }
 
