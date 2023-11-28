@@ -30,7 +30,6 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore } from "../store";
-import { Path } from "../constant";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
