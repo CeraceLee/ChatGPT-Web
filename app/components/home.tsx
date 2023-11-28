@@ -22,6 +22,7 @@ import {
   Routes,
   Route,
   useLocation,
+  useHistory,
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
@@ -29,6 +30,7 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore } from "../store";
+import { Path } from "../constant";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -55,8 +57,32 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
 
+function changeThemeColor(pageType) {
+  const metaDescriptionDark = document.querySelector(
+    'meta[name="theme-color"][media*="dark"]',
+  );
+  const metaDescriptionLight = document.querySelector(
+    'meta[name="theme-color"][media*="light"]',
+  );
+
+  if (pageType === "main") {
+    const themeColor = getCSSVar("--second");
+    metaDescriptionDark?.setAttribute("content", themeColor);
+    metaDescriptionLight?.setAttribute("content", themeColor);
+  } else {
+    const themeColor = getCSSVar("--white");
+    metaDescriptionDark?.setAttribute("content", themeColor);
+    metaDescriptionLight?.setAttribute("content", themeColor);
+  }
+}
+
+function getPathType(path) {
+  return path === Path.Home ? 'main' : 'other';
+}
+
 export function useSwitchTheme() {
   const config = useAppConfig();
+  const history = useHistory();
 
   useEffect(() => {
     document.body.classList.remove("light");
@@ -68,22 +94,16 @@ export function useSwitchTheme() {
       document.body.classList.add("light");
     }
 
-    const metaDescriptionDark = document.querySelector(
-      'meta[name="theme-color"][media*="dark"]',
-    );
-    const metaDescriptionLight = document.querySelector(
-      'meta[name="theme-color"][media*="light"]',
-    );
+    changeThemeColor(getPathType(history.location.pathname));
 
-    if (config.theme === "auto") {
-      metaDescriptionDark?.setAttribute("content", "#151515");
-      metaDescriptionLight?.setAttribute("content", "#fafafa");
-    } else {
-      const themeColor = getCSSVar("--theme-color");
-      metaDescriptionDark?.setAttribute("content", themeColor);
-      metaDescriptionLight?.setAttribute("content", themeColor);
-    }
-  }, [config.theme]);
+    const unlisten = history.listen(() => {
+      changeThemeColor(getPathType(history.location.pathname));
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [config.theme, history]);
 }
 
 function useHtmlLang() {
