@@ -55,32 +55,32 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
 
-function changeThemeColor(pageType: string) {
-  const metaDescriptionDark = document.querySelector(
-    'meta[name="theme-color"][media*="dark"]',
-  );
-  const metaDescriptionLight = document.querySelector(
-    'meta[name="theme-color"][media*="light"]',
-  );
-
-  if (pageType === "main") {
-    const themeColor = getCSSVar("--second");
-    metaDescriptionDark?.setAttribute("content", themeColor);
-    metaDescriptionLight?.setAttribute("content", themeColor);
-  } else {
-    const themeColor = getCSSVar("--white");
-    metaDescriptionDark?.setAttribute("content", themeColor);
-    metaDescriptionLight?.setAttribute("content", themeColor);
-  }
-}
-
-function getPathType(path: string) {
-  return path === Path.Home ? 'main' : 'other';
-}
-
 export function useSwitchTheme() {
   const config = useAppConfig();
   const location = useLocation();
+
+  const changeThemeColor = (pageType: string) => {
+    const metaDescriptionDark = document.querySelector(
+      'meta[name="theme-color"][media*="dark"]',
+    );
+    const metaDescriptionLight = document.querySelector(
+      'meta[name="theme-color"][media*="light"]',
+    );
+  
+    if (pageType === "main") {
+      const themeColor = getCSSVar("--second");
+      metaDescriptionDark?.setAttribute("content", themeColor);
+      metaDescriptionLight?.setAttribute("content", themeColor);
+    } else {
+      const themeColor = getCSSVar("--white");
+      metaDescriptionDark?.setAttribute("content", themeColor);
+      metaDescriptionLight?.setAttribute("content", themeColor);
+    }
+  };
+  
+  const getPathType = (path: string) => {
+    return path === Path.Home ? 'main' : 'other';
+  };
 
   useEffect(() => {
     document.body.classList.remove("light");
