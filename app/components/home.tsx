@@ -101,7 +101,7 @@ export function useSwitchTheme() {
     } catch (error) {
       console.error("An error occurred in useEffect:", error);
     }
-  }, [config.theme, location.pathname]);
+  }, [config.theme]);
 }
 
 function useHtmlLang() {
