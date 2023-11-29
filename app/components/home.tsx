@@ -56,10 +56,9 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
 });
 
 export function useSwitchTheme() {
+  const config = useAppConfig();
+  const location = useLocation();
   try {
-    const config = useAppConfig();
-    const location = useLocation();
-  
     const changeThemeColor = (pageType: string) => {
       const metaDescriptionDark = document.querySelector(
         'meta[name="theme-color"][media*="dark"]',
