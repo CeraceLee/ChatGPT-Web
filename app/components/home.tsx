@@ -139,6 +139,8 @@ function Screen() {
   const isMobileScreen = useMobileScreen();
   const shouldTightBorder = getClientConfig()?.isApp || (config.tightBorder && !isMobileScreen);
 
+  useSwitchTheme();
+
   useEffect(() => {
     loadAsyncGoogleFont();
   }, []);
@@ -188,7 +190,6 @@ export function useLoadData() {
 }
 
 export function Home() {
-  useSwitchTheme();
   useLoadData();
   useHtmlLang();
 
