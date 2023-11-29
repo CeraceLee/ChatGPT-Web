@@ -55,6 +55,50 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
 
+export function useSwitchTheme() {
+  try {
+    const config = useAppConfig();
+    const location = useLocation();
+  
+    const changeThemeColor = (pageType: string) => {
+      const metaDescriptionDark = document.querySelector(
+        'meta[name="theme-color"][media*="dark"]',
+      );
+      const metaDescriptionLight = document.querySelector(
+        'meta[name="theme-color"][media*="light"]',
+      );
+  
+      if (pageType === "main") {
+        const themeColor = getCSSVar("--second");
+        metaDescriptionDark?.setAttribute("content", themeColor);
+        metaDescriptionLight?.setAttribute("content", themeColor);
+      } else {
+        const themeColor = getCSSVar("--white");
+        metaDescriptionDark?.setAttribute("content", themeColor);
+        metaDescriptionLight?.setAttribute("content", themeColor);
+      }
+    };
+  
+    const getPathType = (path: string) => {
+      return path === Path.Home ? 'main' : 'other';
+    };
+
+    useEffect(() => {
+      document.body.classList.remove("light");
+      document.body.classList.remove("dark");
+    
+      if (config.theme === "dark") {
+        document.body.classList.add("dark");
+      } else if (config.theme === "light") {
+        document.body.classList.add("light");
+      }
+      changeThemeColor(getPathType(location.pathname));
+    }, [config.theme, location.pathname]);
+  } catch (error) {
+    console.error("An error occurred in useEffect:", error);
+  }
+}
+
 function useHtmlLang() {
   useEffect(() => {
     const lang = getISOLang();
