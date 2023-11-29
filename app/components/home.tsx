@@ -60,21 +60,25 @@ export function useSwitchTheme() {
   const location = useLocation();
 
   const changeThemeColor = (pageType: string) => {
-    const metaDescriptionDark = document.querySelector(
-      'meta[name="theme-color"][media*="dark"]',
-    );
-    const metaDescriptionLight = document.querySelector(
-      'meta[name="theme-color"][media*="light"]',
-    );
+    try {
+      const metaDescriptionDark = document.querySelector(
+        'meta[name="theme-color"][media*="dark"]',
+      );
+      const metaDescriptionLight = document.querySelector(
+        'meta[name="theme-color"][media*="light"]',
+      );
   
-    if (pageType === "main") {
-      const themeColor = getCSSVar("--second");
-      metaDescriptionDark?.setAttribute("content", themeColor);
-      metaDescriptionLight?.setAttribute("content", themeColor);
-    } else {
-      const themeColor = getCSSVar("--white");
-      metaDescriptionDark?.setAttribute("content", themeColor);
-      metaDescriptionLight?.setAttribute("content", themeColor);
+      if (pageType === "main") {
+        const themeColor = getCSSVar("--second");
+        metaDescriptionDark?.setAttribute("content", themeColor);
+        metaDescriptionLight?.setAttribute("content", themeColor);
+      } else {
+        const themeColor = getCSSVar("--white");
+        metaDescriptionDark?.setAttribute("content", themeColor);
+        metaDescriptionLight?.setAttribute("content", themeColor);
+      }
+    } catch (error) {
+      console.error("An error occurred while changing theme color:", error);
     }
   };
   
@@ -86,14 +90,17 @@ export function useSwitchTheme() {
     document.body.classList.remove("light");
     document.body.classList.remove("dark");
 
-    if (config.theme === "dark") {
-      document.body.classList.add("dark");
-    } else if (config.theme === "light") {
-      document.body.classList.add("light");
+    try {
+      if (config.theme === "dark") {
+        document.body.classList.add("dark");
+      } else if (config.theme === "light") {
+        document.body.classList.add("light");
+      }
+
+      changeThemeColor(getPathType(location.pathname));
+    } catch (error) {
+      console.error("An error occurred in useEffect:", error);
     }
-
-    changeThemeColor(getPathType(location.pathname));
-
   }, [config.theme, location.pathname]);
 }
 
