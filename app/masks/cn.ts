@@ -2,8 +2,8 @@ import { BuiltinMask } from "./typing";
 
 export const CN_MASKS: BuiltinMask[] = [
   {
-    avatar: "1f50c",
-    name: "中译英 - GPT3.5",
+    avatar: "1f310",
+    name: "中译英GPT3.5",
     context: [
       {
         id: "cn-to-en-simple-gpt-3.5-0",
@@ -27,8 +27,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480512,
   },
   {
-    avatar: "1f50d",
-    name: "中译英 - GPT-4",
+    avatar: "1f310",
+    name: "中译英GPT4",
     context: [
       {
         id: "cn-to-en-simple-gpt-4-0",
@@ -52,8 +52,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480513,
   },
   {
-    avatar: "1f50e",
-    name: "英译中 GPT-3.5",
+    avatar: "1f310",
+    name: "英译中GPT3.5",
     context: [
       {
         id: "en-to-cn-gpt-3.5-0",
@@ -77,8 +77,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480514,
   },
   {
-    avatar: "1f50f",
-    name: "英译中 - GPT-4",
+    avatar: "1f310",
+    name: "英译中GPT4",
     context: [
       {
         id: "en-to-cn-gpt-4-0",
@@ -102,8 +102,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480515,
   },
   {
-    avatar: "1f4bb",
-    name: "云服务架构师 - GPT-4",
+    avatar: "2601",
+    name: "云服务架构师GPT4",
     context: [
       {
         id: "cloud-architect-gpt-4-0",
@@ -127,8 +127,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480516,
   },
   {
-    avatar: "1f4bd",
-    name: "快速开始 - GPT-3.5",
+    avatar: "1f680",
+    name: "GPT-3.5",
     context: [],
     modelConfig: {
       model: "gpt-3.5-turbo",
@@ -145,8 +145,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480517,
   },
   {
-    avatar: "1f4be",
-    name: "快速开始 - GPT-4",
+    avatar: "1f680",
+    name: "GPT-4",
     context: [],
     modelConfig: {
       model: "gpt-4-0125-preview",
@@ -163,8 +163,8 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480518,
   },
   {
-    avatar: "1f4bf",
-    name: "快速开始 - Claude-3 Sonnet",
+    avatar: "1f680",
+    name: "Claude-3 Sonnet",
     context: [],
     modelConfig: {
       model: "claude-3-sonnet-20240229",
