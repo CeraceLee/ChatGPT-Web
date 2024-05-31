@@ -1,33 +1,41 @@
 pipeline {
     agent any
+    environment {
+        CODE          = credentials('ACCESS_CODE')
+        API_KEY       = credentials('API_KEY')
+        BASE_URL      = credentials('BASE_URL')
+        CUSTOM_MODELS = credentials('CUSTOM_MODELS')
+        DOCKER_HOST   = credentials('DOCKER_HOST') 
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker build -t chatgpt-webui:latest .'
-                sh 'docker rmi $(docker images -f "dangling=true" -q)'
+                docker.build "chatgpt-webui:latest"
+                docker.withServer("$DOCKER_HOST") {
+                    sh 'docker build -t chatgpt-webui:latest .'
+                    sh 'docker rmi $(docker images -f "dangling=true" -q)'
+                }
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'docker images'
-                sh 'docker ps -aux'
+                docker.withServer("$DOCKER_HOST") {
+                    sh 'docker images'
+                    sh 'docker ps -aux'
+                }
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying..'
-                withCredentials([
-                    string(credentialsId: 'ACCESS_CODE', variable: 'CODE'),
-                    string(credentialsId: 'API_KEY', variable: 'API_KEY'),
-                    string(credentialsId: 'BASE_URL', variable: 'BASE_URL'),
-                    string(credentialsId: 'CUSTOM_MODELS', variable: 'CUSTOM_MODELS')
-                ]) {
+                docker.withServer("$DOCKER_HOST") {
                     sh 'docker stop chatgpt-webui-container'
                     sh """
                         docker run -d \
                             --name chatgpt-webui-container \
+                            --restart=always \
                             -p 3000:3000 \
                             -e CODE="${CODE}" \
                             -e OPENAI_API_KEY="${API_KEY}" \
