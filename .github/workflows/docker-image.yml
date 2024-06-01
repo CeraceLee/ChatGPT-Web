@@ -22,12 +22,12 @@ jobs:
         JENKINS_JOB_NAME: ${{ secrets.JENKINS_JOB_NAME }}
       run: |
         tag=$(date +%s)
-        docker build . --file Dockerfile --tag $(DOCKER_HUB_USERNAME)/chatgpt-webui:$(tag)
-        docker tag $(DOCKER_HUB_USERNAME)/chatgpt-webui:$(tag) $(DOCKER_HUB_USERNAME)/chatgpt-webui:latest
+        docker build . --file Dockerfile -t ${DOCKER_HUB_USERNAME}/chatgpt-webui:${tag}
+        docker tag ${DOCKER_HUB_USERNAME}/chatgpt-webui:${tag} ${DOCKER_HUB_USERNAME}/chatgpt-webui:latest
         docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-        docker push $(DOCKER_HUB_USERNAME)/chatgpt-webui:$(tag)
-        docker push $(DOCKER_HUB_USERNAME)/chatgpt-webui:latest
-        curl -X POST $(JENKINS_URL)job/$(JENKINS_JOB_NAME)/build?token=$(JENKINS_TOKEN)
+        docker push ${DOCKER_HUB_USERNAME}/chatgpt-webui:${tag}
+        docker push ${DOCKER_HUB_USERNAME}/chatgpt-webui:latest
+        curl -X POST ${JENKINS_URL}job/${JENKINS_JOB_NAME}/build?token=${JENKINS_TOKEN}
         
         
         
