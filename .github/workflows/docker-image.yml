@@ -27,7 +27,8 @@ jobs:
         docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
         docker push ${DOCKER_HUB_USERNAME}/chatgpt-webui:${tag}
         docker push ${DOCKER_HUB_USERNAME}/chatgpt-webui:latest
-        curl -X POST ${JENKINS_URL}job/${JENKINS_JOB_NAME}/build?token=${JENKINS_TOKEN}
+        CRUMB=$(curl -s '${JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+        curl -X POST -H "$CRUMB" ${JENKINS_URL}job/${JENKINS_JOB_NAME}/build?token=${JENKINS_TOKEN}
         
         
         
