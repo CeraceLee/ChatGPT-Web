@@ -2,11 +2,11 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   delete:
-    branches: [ "master" ]
+    branches: [ "main" ]
   create:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
