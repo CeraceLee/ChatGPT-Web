@@ -17,9 +17,11 @@ jobs:
       env:
         DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
         DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
         JENKINS_URL: ${{ secrets.JENKINS_URL }}
+        JENKINS_USER: ${{ secrets.JENKINS_USER }}
+        JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
         JENKINS_JOB_NAME: ${{ secrets.JENKINS_JOB_NAME }}
+        JENKINS_JOB_TOKEN: ${{ secrets.JENKINS_JOB_TOKEN }}
       run: |
         tag=$(date +%s)
         docker build . --file Dockerfile -t ${DOCKER_HUB_USERNAME}/chatgpt-webui:${tag}
@@ -27,8 +29,7 @@ jobs:
         docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
         docker push ${DOCKER_HUB_USERNAME}/chatgpt-webui:${tag}
         docker push ${DOCKER_HUB_USERNAME}/chatgpt-webui:latest
-        CRUMB=$(curl -s "${JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)")
-        curl -X POST -H "$CRUMB" ${JENKINS_URL}job/${JENKINS_JOB_NAME}/build?token=${JENKINS_TOKEN}
+        curl -X POST --user $JENKINS_USER:$JENKINS_API_TOKEN ${JENKINS_URL}job/${JENKINS_JOB_NAME}/build?token=${JENKINS_JOB_TOKEN}
         
         
         
