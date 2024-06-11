@@ -13,7 +13,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-0125",
       temperature: 0.7,
       max_tokens: 1024,
       presence_penalty: 0,
@@ -38,7 +38,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-4-0125-preview",
+      model: "gpt-4-turbo",
       temperature: 0.7,
       max_tokens: 1024,
       presence_penalty: 0,
@@ -63,7 +63,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-0125",
       temperature: 0.7,
       max_tokens:  1024,
       presence_penalty: 0,
@@ -88,7 +88,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-4-0125-preview",
+      model: "gpt-4-turbo",
       temperature: 0.7,
       max_tokens: 1024,
       presence_penalty: 0,
@@ -102,7 +102,7 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480515,
   },
   {
-    avatar: "2601",
+    avatar: "U+2601",
     name: "云服务架构师GPT4",
     context: [
       {
@@ -113,7 +113,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-4-0125-preview",
+      model: "gpt-4-turbo",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
@@ -131,7 +131,7 @@ export const CN_MASKS: BuiltinMask[] = [
     name: "GPT-3.5",
     context: [],
     modelConfig: {
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-0125",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
@@ -149,7 +149,7 @@ export const CN_MASKS: BuiltinMask[] = [
     name: "GPT-4",
     context: [],
     modelConfig: {
-      model: "gpt-4-0125-preview",
+      model: "gpt-4-turbo",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
@@ -164,7 +164,61 @@ export const CN_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f680",
-    name: "Claude-3 Sonnet",
+    name: "GPT-4o",
+    context: [],
+    modelConfig: {
+      model: "gpt-4o-2024-05-13",
+      temperature: 0.5,
+      max_tokens: 4096,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 5,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "en",
+    builtin: true,
+    createdAt: 1688899480518,
+  },
+  {
+    avatar: "1f680",
+    name: "Claude2",
+    context: [],
+    modelConfig: {
+      model: "claude-2",
+      temperature: 0.5,
+      max_tokens: 4096,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 5,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "en",
+    builtin: true,
+    createdAt: 1688899480519,
+  },
+  {
+    avatar: "1f680",
+    name: "Haiku",
+    context: [],
+    modelConfig: {
+      model: "claude-3-haiku-20240307",
+      temperature: 0.5,
+      max_tokens: 4096,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 5,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "en",
+    builtin: true,
+    createdAt: 1688899480519,
+  },
+  {
+    avatar: "1f680",
+    name: "Sonnet",
     context: [],
     modelConfig: {
       model: "claude-3-sonnet-20240229",
@@ -192,7 +246,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-4-0125-preview",
+      model: "gpt-4-turbo",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
