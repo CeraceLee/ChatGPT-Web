@@ -102,7 +102,7 @@ export const CN_MASKS: BuiltinMask[] = [
     createdAt: 1688899480515,
   },
   {
-    avatar: "U+2601",
+    avatar: "2601-fe0f",
     name: "云服务架构师GPT4",
     context: [
       {
@@ -168,6 +168,24 @@ export const CN_MASKS: BuiltinMask[] = [
     context: [],
     modelConfig: {
       model: "gpt-4o-2024-05-13",
+      temperature: 0.5,
+      max_tokens: 4096,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 5,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "en",
+    builtin: true,
+    createdAt: 1688899480518,
+  },
+  {
+    avatar: "1f680",
+    name: "GPT-4o-mini",
+    context: [],
+    modelConfig: {
+      model: "gpt-4o-mini",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
