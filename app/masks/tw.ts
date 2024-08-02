@@ -102,7 +102,7 @@ export const TW_MASKS: BuiltinMask[] = [
     createdAt: 1688899480515,
   },
   {
-    avatar: "2601",
+    avatar: "2601-fe0f",
     name: "云服务架构师GPT4",
     context: [
       {
