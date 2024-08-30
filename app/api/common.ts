@@ -40,7 +40,7 @@ export async function requestOpenai(req: NextRequest) {
   let baseUrl =
     (isAzure ? serverConfig.azureUrl : serverConfig.baseUrl) || OPENAI_BASE_URL;
 
-  let messages = req && req.body && req.body.messages ? req.body.messages : [];
+  let { messages } = JSON.parse(await req.text());
   if (messages.length > 0) {
     let last_message = messages[messages.length-1];
     if (last_message && typeof last_message.content === 'string' && last_message.content.startsWith("/g")) {
