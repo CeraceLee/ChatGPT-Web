@@ -10,6 +10,7 @@ declare global {
       CODE?: string;
 
       BASE_URL?: string;
+      WEB_SEARCH_BASE_URL?: string;
       OPENAI_ORG_ID?: string; // openai only
 
       VERCEL?: string;
@@ -158,6 +159,7 @@ export const getServerSideConfig = () => {
   return {
     baseUrl: process.env.BASE_URL,
     apiKey: getApiKey(process.env.OPENAI_API_KEY),
+    webSearchBaseUrl: process.env.WEB_SEARCH_BASE_URL,
     openaiOrgId: process.env.OPENAI_ORG_ID,
 
     isStability,

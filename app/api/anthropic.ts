@@ -73,6 +73,14 @@ async function request(req: NextRequest) {
   let baseUrl =
     serverConfig.anthropicUrl || serverConfig.baseUrl || ANTHROPIC_BASE_URL;
 
+  let messages = req && req.body && req.body.messages ? req.body.messages : [];
+  if (messages.length > 0) {
+    let last_message = messages[messages.length-1];
+    if (last_message && typeof last_message.content === 'string' && last_message.content.startsWith("/g")) {
+      baseUrl = serverConfig.webSearchBaseUrl || baseUrl;
+    }
+  }
+
   if (!baseUrl.startsWith("http")) {
     baseUrl = `https://${baseUrl}`;
   }
