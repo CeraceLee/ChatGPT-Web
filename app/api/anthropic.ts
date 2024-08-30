@@ -73,7 +73,7 @@ async function request(req: NextRequest) {
   let baseUrl =
     serverConfig.anthropicUrl || serverConfig.baseUrl || ANTHROPIC_BASE_URL;
 
-  let { messages } = JSON.parse(await req.text());
+  let { messages } = JSON.parse(await req.clone().text());
   if (messages.length > 0 && serverConfig.webSearchBaseUrl && serverConfig.webSearchApiKey) {
     let last_message = messages[messages.length-1];
     if (last_message && typeof last_message.content === 'string' && (last_message.content.startsWith("/g") || last_message.content.startsWith("/b"))) {
