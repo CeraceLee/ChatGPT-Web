@@ -74,10 +74,16 @@ async function request(req: NextRequest) {
     serverConfig.anthropicUrl || serverConfig.baseUrl || ANTHROPIC_BASE_URL;
 
   let { messages } = JSON.parse(await req.text());
-  if (messages.length > 0) {
+  if (messages.length > 0 && serverConfig.webSearchBaseUrl && serverConfig.webSearchApiKey) {
     let last_message = messages[messages.length-1];
-    if (last_message && typeof last_message.content === 'string' && last_message.content.startsWith("/g")) {
-      baseUrl = serverConfig.webSearchBaseUrl || baseUrl;
+    if (last_message && typeof last_message.content === 'string' && (last_message.content.startsWith("/g") || last_message.content.startsWith("/b"))) {
+      baseUrl = serverConfig.webSearchBaseUrl;
+      if (serverConfig.apiKey && authValue.indexOf(serverConfig.apiKey) !== -1) {
+        authValue = authValue.replace(serverConfig.apiKey, serverConfig.webSearchApiKey);
+      }
+      if (serverConfig.anthropicApiKey && authValue.indexOf(serverConfig.anthropicApiKey) !== -1) {
+        authValue = authValue.replace(serverConfig.anthropicApiKey, serverConfig.webSearchApiKey);
+      }
     }
   }
 

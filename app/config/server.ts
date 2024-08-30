@@ -7,6 +7,7 @@ declare global {
       PROXY_URL?: string; // docker only
 
       OPENAI_API_KEY?: string;
+      WEB_SEARCH_API_KEY?: string;
       CODE?: string;
 
       BASE_URL?: string;
@@ -159,6 +160,7 @@ export const getServerSideConfig = () => {
   return {
     baseUrl: process.env.BASE_URL,
     apiKey: getApiKey(process.env.OPENAI_API_KEY),
+    webSearchApiKey: getApiKey(process.env.WEB_SEARCH_API_KEY),
     webSearchBaseUrl: process.env.WEB_SEARCH_BASE_URL,
     openaiOrgId: process.env.OPENAI_ORG_ID,
 
