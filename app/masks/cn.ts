@@ -3,12 +3,12 @@ import { BuiltinMask } from "./typing";
 export const CN_MASKS: BuiltinMask[] = [
   {
     avatar: "1f310",
-    name: "中译英GPT3.5",
+    name: "GPT3.5翻译",
     context: [
       {
         id: "cn-to-en-simple-gpt-3.5-0",
         role: "system",
-        content: "You are a translation assistant, translating from Chinese to English. Please keep the vocabulary simple.",
+        content: "You are a translation assistant, translating from Chinese to English if [user] input with Chinese, or translating from English to Chinese if [user] input with English. Please keep the vocabulary simple and the conversion will just contain translation, please do not answer questions.",
         date: "",
       },
     ],
@@ -28,12 +28,12 @@ export const CN_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f310",
-    name: "中译英GPT4",
+    name: "GPT4翻译",
     context: [
       {
         id: "cn-to-en-simple-gpt-4-0",
         role: "system",
-        content: "You are a translation assistant, translating from Chinese to English. Please keep the vocabulary simple.",
+        content: "You are a translation assistant, translating from Chinese to English if [user] input with Chinese, or translating from English to Chinese if [user] input with English. Please keep the vocabulary simple and the conversion will just contain translation, please do not answer questions.",
         date: "",
       },
     ],
@@ -53,42 +53,17 @@ export const CN_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f310",
-    name: "英译中GPT3.5",
+    name: "GPT4o翻译",
     context: [
       {
-        id: "en-to-cn-gpt-3.5-0",
+        id: "cn-to-en-simple-gpt-4-0",
         role: "system",
-        content: "You are a translation assistant, translating from English to Chinese.",
+        content: "You are a translation assistant, translating from Chinese to English if [user] input with Chinese, or translating from English to Chinese if [user] input with English. Please keep the vocabulary simple and the conversion will just contain translation, please do not answer questions.",
         date: "",
       },
     ],
     modelConfig: {
-      model: "gpt-3.5-turbo-0125",
-      temperature: 0.7,
-      max_tokens:  1024,
-      presence_penalty: 0,
-      frequency_penalty: 0,
-      sendMemory: true,
-      historyMessageCount: 2,
-      compressMessageLengthThreshold: 500,
-    },
-    lang: "en",
-    builtin: true,
-    createdAt: 1688899480514,
-  },
-  {
-    avatar: "1f310",
-    name: "英译中GPT4",
-    context: [
-      {
-        id: "en-to-cn-gpt-4-0",
-        role: "system",
-        content: "You are a translation assistant, translating from English to Chinese.",
-        date: "",
-      },
-    ],
-    modelConfig: {
-      model: "gpt-4-turbo",
+      model: "gpt-4o-2024-08-06",
       temperature: 0.7,
       max_tokens: 1024,
       presence_penalty: 0,
@@ -97,9 +72,9 @@ export const CN_MASKS: BuiltinMask[] = [
       historyMessageCount: 2,
       compressMessageLengthThreshold: 500,
     },
-    lang: "en",
+    lang: "cn",
     builtin: true,
-    createdAt: 1688899480515,
+    createdAt: 1688899480513,
   },
   {
     avatar: "2601-fe0f",
@@ -167,7 +142,7 @@ export const CN_MASKS: BuiltinMask[] = [
     name: "GPT-4o",
     context: [],
     modelConfig: {
-      model: "gpt-4o-2024-05-13",
+      model: "gpt-4o-2024-08-06",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
@@ -200,42 +175,6 @@ export const CN_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f680",
-    name: "Claude2",
-    context: [],
-    modelConfig: {
-      model: "claude-2",
-      temperature: 0.5,
-      max_tokens: 4096,
-      presence_penalty: 0,
-      frequency_penalty: 0,
-      sendMemory: true,
-      historyMessageCount: 5,
-      compressMessageLengthThreshold: 1000,
-    },
-    lang: "en",
-    builtin: true,
-    createdAt: 1688899480519,
-  },
-  {
-    avatar: "1f680",
-    name: "Haiku",
-    context: [],
-    modelConfig: {
-      model: "claude-3-haiku-20240307",
-      temperature: 0.5,
-      max_tokens: 4096,
-      presence_penalty: 0,
-      frequency_penalty: 0,
-      sendMemory: true,
-      historyMessageCount: 5,
-      compressMessageLengthThreshold: 1000,
-    },
-    lang: "en",
-    builtin: true,
-    createdAt: 1688899480519,
-  },
-  {
-    avatar: "1f680",
     name: "Sonnet",
     context: [],
     modelConfig: {
@@ -254,7 +193,7 @@ export const CN_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f4bb",
-    name: "代码助手",
+    name: "GPT4代码助手",
     context: [
       {
         id: "code-helper-0",
@@ -265,6 +204,31 @@ export const CN_MASKS: BuiltinMask[] = [
     ],
     modelConfig: {
       model: "gpt-4-turbo",
+      temperature: 0.5,
+      max_tokens: 4096,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 5,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "en",
+    builtin: true,
+    createdAt: 1688899480520,
+  },
+  {
+    avatar: "1f4bb",
+    name: "GPT4o代码助手",
+    context: [
+      {
+        id: "code-helper-0",
+        role: "system",
+        content: "你是一个代码助手，你会根据分析需求并生成相关的代码或者给提供的代码生成优化或建议.",
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "gpt-4o-2024-08-06",
       temperature: 0.5,
       max_tokens: 4096,
       presence_penalty: 0,
