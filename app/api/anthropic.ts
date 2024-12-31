@@ -3,14 +3,13 @@ import {
   ANTHROPIC_BASE_URL,
   Anthropic,
   ApiPath,
-  DEFAULT_MODELS,
   ServiceProvider,
   ModelProvider,
 } from "@/app/constant";
 import { prettyObject } from "@/app/utils/format";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "./auth";
-import { isModelAvailableInServer } from "@/app/utils/model";
+import { isModelNotavailableInServer } from "@/app/utils/model";
 import { cloudflareAIGatewayUrl } from "@/app/utils/cloudflare";
 
 const ALLOWD_PATH = new Set([Anthropic.ChatPath, Anthropic.ChatPath1]);
@@ -112,6 +111,7 @@ async function request(req: NextRequest) {
     headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-store",
+      "anthropic-dangerous-direct-browser-access": "true",
       [authHeaderName]: authValue,
       "anthropic-version":
         req.headers.get("anthropic-version") ||
@@ -136,7 +136,7 @@ async function request(req: NextRequest) {
 
       // not undefined and is false
       if (
-        isModelAvailableInServer(
+        isModelNotavailableInServer(
           serverConfig.customModels,
           jsonBody?.model as string,
           ServiceProvider.Anthropic as string,
