@@ -1,4 +1,4 @@
-FROM crpi-qywyp4icqa2iaama-vpc.cn-beijing.personal.cr.aliyuncs.com/cerace/node:18-alpine AS base
+FROM crpi-qywyp4icqa2iaama.cn-beijing.personal.cr.aliyuncs.com/cerace/node:18-alpine AS base
 
 FROM base AS deps
 
