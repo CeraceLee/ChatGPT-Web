@@ -33,7 +33,7 @@ export const CN_MASKS: BuiltinMask[] = [
       },
     ],
     modelConfig: {
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       temperature: 0.7,
       max_tokens: 1024,
       presence_penalty: 0,
@@ -53,7 +53,8 @@ export const CN_MASKS: BuiltinMask[] = [
       {
         id: "cn-to-en-simple-gpt-4-0",
         role: "system",
-        content: "You are a translation assistant, translating from Chinese to English if [user] input with Chinese, or translating from English to Chinese if [user] input with English. Please keep the vocabulary simple and the conversion will just contain translation, please do not answer questions.",
+        content:
+          "You are a translation assistant, translating from Chinese to English if [user] input with Chinese, or translating from English to Chinese if [user] input with English. Please keep the vocabulary simple and the conversion will just contain translation, please do not answer questions.",
         date: "",
       },
     ],
@@ -78,7 +79,8 @@ export const CN_MASKS: BuiltinMask[] = [
       {
         id: "cloud-architect-gpt-4-0",
         role: "system",
-        content: "You are a professional cloud service architect. Provide advice and solutions for cloud architecture and services.",
+        content:
+          "You are a professional cloud service architect. Provide advice and solutions for cloud architecture and services.",
         date: "",
       },
     ],
@@ -229,7 +231,8 @@ export const CN_MASKS: BuiltinMask[] = [
       {
         id: "code-helper-0",
         role: "system",
-        content: "你是一个代码助手，你会根据分析需求并生成相关的代码或者给提供的代码生成优化或建议.",
+        content:
+          "你是一个代码助手，你会根据分析需求并生成相关的代码或者给提供的代码生成优化或建议.",
         date: "",
       },
     ],
@@ -246,5 +249,5 @@ export const CN_MASKS: BuiltinMask[] = [
     lang: "en",
     builtin: true,
     createdAt: 1688899480520,
-  }
+  },
 ];
